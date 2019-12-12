@@ -6,6 +6,10 @@ defmodule Dictionary.WordList do
   end
 
   def random_word() do
+    # # Sets the probability of random_word/0 crashing a third of the time
+    # if :rand.uniform < 0.33 do
+    Agent.get(@me, fn _ -> exit(:bad) end)
+    # end
     Agent.get(@me, &Enum.random/1)
   end
 
